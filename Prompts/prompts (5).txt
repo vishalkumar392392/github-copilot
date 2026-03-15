@@ -1,2 +1,0 @@
-[agent mode / cloud agent]
-implement the homepage which should be a landing page highlighting the features of this app
