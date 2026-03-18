@@ -20,13 +20,13 @@ Every prompt interaction must capture:
 
 ## Log Location
 
-Store all log entries in `logs/augmentation-log.json` — one JSON object per line (JSONL format). Do not use a plain `.md` file for entries; structured JSONL allows reliable querying and diffing.
+Store all log entries in `logs/augmentation-log.jsonl` — one JSON object per line (JSONL format). Do not use a plain `.md` file for entries; structured JSONL allows reliable querying and diffing.
 
 ## Entry Schema
 
-```jsonschema
+```json
 {
-  "timestamp": "2026-03-16T10:00:00Z",  // ISO 8601 UTC
+  "timestamp": "2026-03-16T10:00:00Z",
   "prompt": "string — full user prompt text",
   "context": {
     "activeFile": "string | null",
@@ -38,10 +38,14 @@ Store all log entries in `logs/augmentation-log.json` — one JSON object per li
 }
 ```
 
+All timestamps must use ISO 8601 UTC format.
+
 ## Rules
 
-- Append a new entry after **every** agent turn that produces a code change, file creation, or configuration edit.
+- Append a new entry after **every** agent turn, whether or not it produces file changes.
 - Do not retroactively edit past entries. Corrections should be new entries referencing the original timestamp.
 - Keep `responseSummary` factual and brief — do not include opinions or speculative notes.
-- If no files were changed (e.g., a read-only explanation), `filesChanged` may be an empty array but the entry must still be written.
+- If no files were changed (e.g., a read-only explanation), `filesChanged` should be an empty array.
 - The log file (`logs/augmentation-log.jsonl`) must be committed alongside any code changes it describes.
+- Do not run Prettier or any formatter on `logs/augmentation-log.jsonl`. JSONL files must remain one JSON object per line — formatting them will corrupt the file.
+- Do not use competing logging mechanisms (e.g., piping tool output to separate files). All agent audit logging goes through this JSONL file only.

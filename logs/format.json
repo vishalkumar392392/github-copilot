@@ -4,7 +4,7 @@
     "postToolUse": [
       {
         "type": "command",
-        "bash": "npx prettier --write ."
+        "bash": "npx prettier --write --ignore-path .prettierignore ."
       }
     ]
   }
