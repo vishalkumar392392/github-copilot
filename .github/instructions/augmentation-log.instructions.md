@@ -44,4 +44,4 @@ Store all log entries in `logs/augmentation-log.json` — one JSON object per li
 - Do not retroactively edit past entries. Corrections should be new entries referencing the original timestamp.
 - Keep `responseSummary` factual and brief — do not include opinions or speculative notes.
 - If no files were changed (e.g., a read-only explanation), `filesChanged` may be an empty array but the entry must still be written.
-- The log file (`logs/augmentation-log.json`) must be committed alongside any code changes it describes.
+- The log file (`logs/augmentation-log.jsonl`) must be committed alongside any code changes it describes.
