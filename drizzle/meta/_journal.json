@@ -8,6 +8,13 @@
       "when": 1773557423383,
       "tag": "0000_ambitious_exodus",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1773781229681,
+      "tag": "0001_lean_jamie_braddock",
+      "breakpoints": true
     }
   ]
 }

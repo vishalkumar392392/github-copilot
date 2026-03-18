@@ -1,3 +1,7 @@
+---
+description: Read this file before implementing or modifying any authentication-related code in the project. It defines the rules and best practices for using Clerk as the auth provider.
+---
+
 # LLM Auth Guide
 
 ## Auth Provider

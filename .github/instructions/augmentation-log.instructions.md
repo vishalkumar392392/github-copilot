@@ -1,3 +1,7 @@
+---
+description: This file defines the rules for logging all interactions with LLM agents in this repository. It specifies what information to capture, how to format log entries, and where to store them.
+---
+
 # Augmentation Log — Agent Rules
 
 ## Purpose
@@ -16,7 +20,7 @@ Every prompt interaction must capture:
 
 ## Log Location
 
-Store all log entries in `docs/augmentation-log.jsonl` — one JSON object per line (JSONL format). Do not use a plain `.md` file for entries; structured JSONL allows reliable querying and diffing.
+Store all log entries in `logs/augmentation-log.json` — one JSON object per line (JSONL format). Do not use a plain `.md` file for entries; structured JSONL allows reliable querying and diffing.
 
 ## Entry Schema
 
@@ -27,7 +31,7 @@ Store all log entries in `docs/augmentation-log.jsonl` — one JSON object per l
   "context": {
     "activeFile": "string | null",
     "attachments": ["array of filenames or IDs"],
-    "referencedDocs": ["docs/*.md files read"]
+    "referencedDocs": ["logs/*.md files read"]
   },
   "responseSummary": "string — brief description of agent output",
   "filesChanged": ["relative/path/to/file"]
@@ -40,4 +44,4 @@ Store all log entries in `docs/augmentation-log.jsonl` — one JSON object per l
 - Do not retroactively edit past entries. Corrections should be new entries referencing the original timestamp.
 - Keep `responseSummary` factual and brief — do not include opinions or speculative notes.
 - If no files were changed (e.g., a read-only explanation), `filesChanged` may be an empty array but the entry must still be written.
-- The log file (`docs/augmentation-log.jsonl`) must be committed alongside any code changes it describes.
+- The log file (`logs/augmentation-log.json`) must be committed alongside any code changes it describes.

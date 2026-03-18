@@ -1,3 +1,7 @@
+---
+description: Read this file before implementing or modifying any UI-related code in the project. It defines the rules and best practices for using shadcn/ui as the component library.
+---
+
 # UI Components — Agent Rules
 
 ## shadcn/ui Only

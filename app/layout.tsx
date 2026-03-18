@@ -1,29 +1,29 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import type { Metadata } from 'next';
+import { Geist, Geist_Mono } from 'next/font/google';
+import './globals.css';
 import {
   ClerkProvider,
   Show,
   SignInButton,
   SignUpButton,
   UserButton,
-} from "@clerk/nextjs";
-import { Button } from "@/components/ui/button";
+} from '@clerk/nextjs';
+import { Button } from '@/components/ui/button';
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
 });
 
 export const metadata: Metadata = {
-  title: "Linkshortner — Shorten, Share & Track Links",
+  title: 'Linkshortner — Shorten, Share & Track Links',
   description:
-    "Turn long URLs into clean short links and track every click. Fast, simple link shortening.",
+    'Turn long URLs into clean short links and track every click. Fast, simple link shortening.',
 };
 
 export default function RootLayout({

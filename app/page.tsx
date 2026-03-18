@@ -1,94 +1,39 @@
-import { auth } from "@clerk/nextjs/server";
-import { redirect } from "next/navigation";
-import { SignUpButton } from "@clerk/nextjs";
-import {
-  Link2,
-  BarChart3,
-  Pencil,
-  LayoutDashboard,
-  Zap,
-  Shield,
-  ArrowRight,
-  Globe,
-  MousePointerClick,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from "@/components/ui/card";
-
-const features = [
-  {
-    icon: Zap,
-    title: "Instant Shortening",
-    description:
-      "Paste any URL and get a short link in under a second. Zero setup, zero friction.",
-  },
-  {
-    icon: BarChart3,
-    title: "Real-Time Analytics",
-    description:
-      "Track clicks, referrers, and trends in real time so you know exactly how your links perform.",
-  },
-  {
-    icon: Pencil,
-    title: "Custom Slugs",
-    description:
-      "Replace random characters with branded, memorable slugs that build trust with your audience.",
-  },
-  {
-    icon: LayoutDashboard,
-    title: "One Dashboard",
-    description:
-      "Create, edit, and organize every link from a single, clutter-free dashboard.",
-  },
-  {
-    icon: Shield,
-    title: "Secure & Reliable",
-    description:
-      "Every redirect is fast and safe. Your links stay live and protected around the clock.",
-  },
-  {
-    icon: Globe,
-    title: "Share Everywhere",
-    description:
-      "Short links work in emails, social posts, QR codes, and anywhere else you share content.",
-  },
-];
+import { auth } from '@clerk/nextjs/server';
+import { redirect } from 'next/navigation';
+import { SignUpButton } from '@clerk/nextjs';
+import { Link2, ArrowRight, MousePointerClick } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 
 const steps = [
   {
-    number: "1",
-    title: "Paste your URL",
-    description: "Drop any long link into the shortener.",
+    number: '1',
+    title: 'Paste your URL',
+    description: 'Drop any long link into the shortener.',
   },
   {
-    number: "2",
-    title: "Customize & shorten",
-    description: "Pick a custom slug or let us generate one instantly.",
+    number: '2',
+    title: 'Customize & shorten',
+    description: 'Pick a custom slug or let us generate one instantly.',
   },
   {
-    number: "3",
-    title: "Share & track",
-    description: "Send your link and watch the click data roll in.",
+    number: '3',
+    title: 'Share & track',
+    description: 'Send your link and watch the click data roll in.',
   },
 ];
 
 const stats = [
-  { value: "100 %", label: "Free to use" },
-  { value: "< 50 ms", label: "Redirect speed" },
-  { value: "99.9 %", label: "Uptime" },
-  { value: "∞", label: "Links you can create" },
+  { value: '100 %', label: 'Free to use' },
+  { value: '< 50 ms', label: 'Redirect speed' },
+  { value: '99.9 %', label: 'Uptime' },
+  { value: '∞', label: 'Links you can create' },
 ];
 
 export default async function Home() {
   const { userId } = await auth();
   if (userId) {
-    redirect("/dashboard");
+    redirect('/dashboard');
   }
 
   return (
@@ -107,7 +52,7 @@ export default async function Home() {
         </div>
 
         <h1 className="relative max-w-3xl text-5xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl">
-          Short links,{" "}
+          Short links,{' '}
           <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
             big&nbsp;impact
           </span>
@@ -150,41 +95,6 @@ export default async function Home() {
               <p className="mt-1 text-sm text-muted-foreground">{label}</p>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* ── Features ──────────────────────────────────────── */}
-      <section className="px-6 py-20">
-        <div className="mx-auto max-w-5xl">
-          <p className="mb-2 text-center text-sm font-medium uppercase tracking-widest text-primary">
-            Features
-          </p>
-          <h2 className="mb-4 text-center text-3xl font-bold tracking-tight sm:text-4xl">
-            Everything you need to manage links
-          </h2>
-          <p className="mx-auto mb-12 max-w-2xl text-center text-muted-foreground">
-            From shortening to analytics, everything is built in — no
-            third-party add-ons required.
-          </p>
-
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {features.map(({ icon: Icon, title, description }) => (
-              <Card
-                key={title}
-                className="transition-colors hover:border-primary/40"
-              >
-                <CardHeader>
-                  <div className="mb-3 flex size-11 items-center justify-center rounded-lg bg-primary/10">
-                    <Icon className="size-5 text-primary" />
-                  </div>
-                  <CardTitle>{title}</CardTitle>
-                  <CardDescription className="leading-relaxed">
-                    {description}
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-            ))}
-          </div>
         </div>
       </section>
 

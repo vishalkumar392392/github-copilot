@@ -18,16 +18,7 @@ These instructions apply to all LLM work in this repository. Keep changes minima
 - Keep comments sparse and only add them when they clarify non-obvious intent.
 - Preserve user changes. Do not rewrite unrelated generated files just because they are scaffolded.
 
-## Required Reference Docs — CRITICAL
-
-**You MUST read the relevant `docs/*.md` file(s) BEFORE generating ANY code.** This is non-negotiable and applies to every task, no matter how small. Do not rely on memory or assumptions — open and read the file first. Skipping this step leads to incorrect patterns, wasted effort, and rework.
-
-- `docs/llm-auth.md` — Clerk auth rules, route protection, modal sign-in/sign-up. Read before any auth, middleware, or route-guard work.
-- `docs/llm-ui.md` — shadcn/ui component rules, no custom UI elements. Read before any UI or component work.
-- `docs/llm-augmentation-log.md` — Prompt and context logging rules. Read before any agent turn that produces code changes; append a log entry to `docs/augmentation-log.jsonl` after every such turn.
-
 ## Minimum Validation
 
 - Run `npm run lint` after code changes when the task touches TypeScript, React, or config files.
-- If the change affects schema or data access, verify the Drizzle and env assumptions described in `docs/llm-data-auth.md`.
 - If you cannot run validation, state that explicitly in your final response.
