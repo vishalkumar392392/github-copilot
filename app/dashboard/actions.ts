@@ -4,9 +4,16 @@ import { z } from 'zod';
 import { auth } from '@clerk/nextjs/server';
 import { revalidatePath } from 'next/cache';
 import { createLink, updateLink, deleteLink } from '@/data/links';
+import { checkRateLimit } from '@/lib/rate-limit';
 
 const createLinkSchema = z.object({
-  url: z.string().url('Please enter a valid URL.'),
+  url: z
+    .string()
+    .url('Please enter a valid URL.')
+    .refine(
+      (u) => u.startsWith('http://') || u.startsWith('https://'),
+      'Only HTTP and HTTPS URLs are allowed.',
+    ),
   slug: z
     .string()
     .min(1)
@@ -21,6 +28,9 @@ const createLinkSchema = z.object({
 export async function createLinkAction(input: { url: string; slug?: string }) {
   const { userId } = await auth();
   if (!userId) return { error: 'Unauthorized' };
+
+  const { limited } = checkRateLimit(userId);
+  if (limited) return { error: 'Too many requests. Please try again later.' };
 
   const parsed = createLinkSchema.safeParse(input);
   if (!parsed.success) {
@@ -49,7 +59,13 @@ export async function createLinkAction(input: { url: string; slug?: string }) {
 }
 
 const updateLinkSchema = z.object({
-  url: z.string().url('Please enter a valid URL.'),
+  url: z
+    .string()
+    .url('Please enter a valid URL.')
+    .refine(
+      (u) => u.startsWith('http://') || u.startsWith('https://'),
+      'Only HTTP and HTTPS URLs are allowed.',
+    ),
   slug: z
     .string()
     .min(1)
